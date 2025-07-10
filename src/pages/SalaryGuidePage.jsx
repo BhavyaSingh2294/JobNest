@@ -10,9 +10,10 @@ const SalaryGuidePage = () => {
     role: '',
     experience: '',
     location: '',
-    skills: [],
+    skills: '',
     education: ''
   });
+  const [calculatorResult, setCalculatorResult] = useState(null);
 
   const salaryData = [
     {
@@ -174,78 +175,217 @@ const SalaryGuidePage = () => {
           <p className="text-gray-600 mt-2">Get personalized salary estimates based on your profile</p>
         </div>
         
-        <div className="p-6 space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Job Role *</label>
-            <input
-              type="text"
-              value={calculatorData.role}
-              onChange={(e) => setCalculatorData({...calculatorData, role: e.target.value})}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="e.g. Software Engineer"
-            />
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Experience Level *</label>
-              <select
-                value={calculatorData.experience}
-                onChange={(e) => setCalculatorData({...calculatorData, experience: e.target.value})}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        {calculatorResult ? (
+          <div className="p-6">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <DollarSign className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Salary Estimate</h3>
+              <p className="text-gray-600">Based on your profile and market data</p>
+            </div>
+            
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-gray-900 mb-2">
+                  {formatSalary(calculatorResult.min)} - {formatSalary(calculatorResult.max)}
+                </div>
+                <div className="text-lg text-gray-600 mb-4">
+                  Median: <span className="font-semibold text-blue-600">{formatSalary(calculatorResult.median)}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  <div className="text-center">
+                    <div className="font-semibold text-gray-900">{formatSalary(calculatorResult.min)}</div>
+                    <div className="text-gray-600">25th percentile</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-semibold text-blue-600">{formatSalary(calculatorResult.median)}</div>
+                    <div className="text-gray-600">Median</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="font-semibold text-gray-900">{formatSalary(calculatorResult.max)}</div>
+                    <div className="text-gray-600">75th percentile</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="space-y-4 mb-6">
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <span className="text-gray-700">Role</span>
+                <span className="font-medium text-gray-900">{calculatorData.role}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <span className="text-gray-700">Experience</span>
+                <span className="font-medium text-gray-900">{calculatorData.experience}</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                <span className="text-gray-700">Location</span>
+                <span className="font-medium text-gray-900">{calculatorData.location}</span>
+              </div>
+              {calculatorData.education && (
+                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                  <span className="text-gray-700">Education</span>
+                  <span className="font-medium text-gray-900">{calculatorData.education}</span>
+                </div>
+              )}
+            </div>
+            
+            <div className="flex space-x-4">
+              <button 
+                onClick={() => {
+                  setCalculatorResult(null);
+                  setCalculatorData({
+                    role: '',
+                    experience: '',
+                    location: '',
+                    skills: '',
+                    education: ''
+                  });
+                }}
+                className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-medium transition-colors"
               >
-                <option value="">Select Level</option>
-                <option value="Entry Level">Entry Level (0-2 years)</option>
-                <option value="Mid Level">Mid Level (3-5 years)</option>
-                <option value="Senior Level">Senior Level (6+ years)</option>
-              </select>
+                Calculate Again
+              </button>
+              <button 
+                onClick={() => setShowCalculator(false)}
+                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="p-6 space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Job Role *</label>
+              <input
+                type="text"
+                value={calculatorData.role}
+                onChange={(e) => setCalculatorData({...calculatorData, role: e.target.value})}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="e.g. Software Engineer"
+              />
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Experience Level *</label>
+                <select
+                  value={calculatorData.experience}
+                  onChange={(e) => setCalculatorData({...calculatorData, experience: e.target.value})}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="">Select Level</option>
+                  <option value="Entry Level">Entry Level (0-2 years)</option>
+                  <option value="Mid Level">Mid Level (3-5 years)</option>
+                  <option value="Senior Level">Senior Level (6+ years)</option>
+                </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Location *</label>
+                <input
+                  type="text"
+                  value={calculatorData.location}
+                  onChange={(e) => setCalculatorData({...calculatorData, location: e.target.value})}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="City, State"
+                />
+              </div>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Location *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Key Skills</label>
               <input
                 type="text"
-                value={calculatorData.location}
-                onChange={(e) => setCalculatorData({...calculatorData, location: e.target.value})}
+                value={calculatorData.skills}
+                onChange={(e) => setCalculatorData({...calculatorData, skills: e.target.value})}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="City, State"
+                placeholder="e.g. JavaScript, React, Node.js"
               />
             </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Education</label>
+              <select
+                value={calculatorData.education}
+                onChange={(e) => setCalculatorData({...calculatorData, education: e.target.value})}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Select Education</option>
+                <option value="High School">High School</option>
+                <option value="Bachelor's">Bachelor's Degree</option>
+                <option value="Master's">Master's Degree</option>
+                <option value="PhD">PhD</option>
+              </select>
+            </div>
+            
+            <div className="flex space-x-4">
+              <button 
+                onClick={() => setShowCalculator(false)}
+                className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-medium transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => {
+                  if (calculatorData.role && calculatorData.experience && calculatorData.location) {
+                    // Calculate salary based on inputs
+                    let baseMin = 60000;
+                    let baseMax = 120000;
+                    
+                    // Adjust based on experience
+                    if (calculatorData.experience === 'Entry Level') {
+                      baseMin = 60000;
+                      baseMax = 90000;
+                    } else if (calculatorData.experience === 'Mid Level') {
+                      baseMin = 80000;
+                      baseMax = 130000;
+                    } else if (calculatorData.experience === 'Senior Level') {
+                      baseMin = 120000;
+                      baseMax = 200000;
+                    }
+                    
+                    // Adjust based on location
+                    if (calculatorData.location.toLowerCase().includes('san francisco') || 
+                        calculatorData.location.toLowerCase().includes('new york')) {
+                      baseMin *= 1.4;
+                      baseMax *= 1.4;
+                    } else if (calculatorData.location.toLowerCase().includes('seattle') || 
+                               calculatorData.location.toLowerCase().includes('boston')) {
+                      baseMin *= 1.2;
+                      baseMax *= 1.2;
+                    }
+                    
+                    // Adjust based on education
+                    if (calculatorData.education === 'Master\'s') {
+                      baseMin *= 1.1;
+                      baseMax *= 1.1;
+                    } else if (calculatorData.education === 'PhD') {
+                      baseMin *= 1.2;
+                      baseMax *= 1.2;
+                    }
+                    
+                    const median = Math.round((baseMin + baseMax) / 2);
+                    
+                    setCalculatorResult({
+                      min: Math.round(baseMin),
+                      max: Math.round(baseMax),
+                      median: median
+                    });
+                  } else {
+                    alert('Please fill in all required fields (Role, Experience, Location)');
+                  }
+                }}
+                disabled={!calculatorData.role || !calculatorData.experience || !calculatorData.location}
+                className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white py-3 px-6 rounded-lg font-medium transition-colors"
+              >
+                Calculate Salary
+              </button>
+            </div>
           </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Education</label>
-            <select
-              value={calculatorData.education}
-              onChange={(e) => setCalculatorData({...calculatorData, education: e.target.value})}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="">Select Education</option>
-              <option value="High School">High School</option>
-              <option value="Bachelor's">Bachelor's Degree</option>
-              <option value="Master's">Master's Degree</option>
-              <option value="PhD">PhD</option>
-            </select>
-          </div>
-          
-          <div className="flex space-x-4">
-            <button 
-              onClick={() => setShowCalculator(false)}
-              className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 px-6 rounded-lg font-medium transition-colors"
-            >
-              Cancel
-            </button>
-            <button 
-              onClick={() => {
-                alert(`Estimated salary range: $85,000 - $125,000 based on your profile`);
-                setShowCalculator(false);
-              }}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-colors"
-            >
-              Calculate Salary
-            </button>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
