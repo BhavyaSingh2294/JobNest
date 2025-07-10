@@ -265,6 +265,7 @@ const SalaryGuidePage = () => {
                 onChange={(e) => setCalculatorData({...calculatorData, role: e.target.value})}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="e.g. Software Engineer"
+                autoComplete="off"
               />
             </div>
             
@@ -291,6 +292,7 @@ const SalaryGuidePage = () => {
                   onChange={(e) => setCalculatorData({...calculatorData, location: e.target.value})}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="City, State"
+                  autoComplete="off"
                 />
               </div>
             </div>
@@ -303,6 +305,7 @@ const SalaryGuidePage = () => {
                 onChange={(e) => setCalculatorData({...calculatorData, skills: e.target.value})}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="e.g. JavaScript, React, Node.js"
+                autoComplete="off"
               />
             </div>
             

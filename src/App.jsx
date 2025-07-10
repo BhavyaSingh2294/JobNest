@@ -10,6 +10,8 @@ import JobDetailsPage from './pages/JobDetailsPage';
 import CompanyDetailsPage from './pages/CompanyDetailsPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
+import CampaignsPage from './pages/CampaignsPage';
+import PostJobPage from './pages/PostJobPage';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/companies/:id" element={<CompanyDetailsPage />} />
           <Route path="/salary-guide" element={<SalaryGuidePage />} />
           <Route path="/career-advice" element={<CareerAdvicePage />} />
+          <Route path="/campaigns" element={<CampaignsPage />} />
+          <Route path="/post-job" element={<PostJobPage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Routes>

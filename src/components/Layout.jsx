@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Building2, Bell, User, Settings, LogOut, Menu, X, Search } from 'lucide-react';
+import { Building2, Bell, User, Settings, LogOut, Menu, X, Search, Plus, Target } from 'lucide-react';
 import AuthModal from './AuthModal';
 
 const Layout = ({ children }) => {
@@ -53,6 +53,7 @@ const Layout = ({ children }) => {
   const navigation = [
     { name: 'Jobs', href: '/jobs' },
     { name: 'Companies', href: '/companies' },
+    { name: 'Campaigns', href: '/campaigns' },
     { name: 'Salary Guide', href: '/salary-guide' },
     { name: 'Career Advice', href: '/career-advice' },
   ];
@@ -114,6 +115,17 @@ const Layout = ({ children }) => {
             </div>
             
             <div className="flex items-center space-x-4">
+              {/* Post Job Button - Only for Employers */}
+              {user && user.userType === 'employer' && (
+                <Link
+                  to="/post-job"
+                  className="hidden md:flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Post Job</span>
+                </Link>
+              )}
+              
               {/* Quick Search */}
               <div className="relative dropdown-container">
                 <button 
@@ -344,6 +356,7 @@ const Layout = ({ children }) => {
                 <li><Link to="/jobs" className="hover:text-white transition-colors">Browse Jobs</Link></li>
                 <li><Link to="/career-advice" className="hover:text-white transition-colors">Career Advice</Link></li>
                 <li><Link to="/salary-guide" className="hover:text-white transition-colors">Salary Guide</Link></li>
+                <Link to="/campaigns" className="hover:text-white transition-colors">Campaigns</Link>
               </ul>
             </div>
             
@@ -353,6 +366,7 @@ const Layout = ({ children }) => {
                 <li><a href="#" className="hover:text-white transition-colors">Post a Job</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Find Candidates</a></li>
                 <li><Link to="/companies" className="hover:text-white transition-colors">Company Directory</Link></li>
+                <li><Link to="/campaigns" className="hover:text-white transition-colors">Launch Campaigns</Link></li>
               </ul>
             </div>
             
