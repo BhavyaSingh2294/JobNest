@@ -46,7 +46,7 @@ const ProfilePage = () => {
           title: 'Full Stack Developer',
           company: 'StartupXYZ',
           location: 'Remote',
-          salary: '$85k - $115k',
+          salary: '₹71L - ₹95L',
           savedDate: '2024-01-16',
           type: 'Full-time',
           logo: 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
@@ -56,7 +56,7 @@ const ProfilePage = () => {
           title: 'Data Scientist',
           company: 'Analytics Plus',
           location: 'Boston, MA',
-          salary: '$90k - $130k',
+          salary: '₹75L - ₹1.08Cr',
           savedDate: '2024-01-14',
           type: 'Full-time',
           logo: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
@@ -220,7 +220,7 @@ const ProfilePage = () => {
               <div className="text-center mb-6">
                 <User className="w-12 h-12 text-blue-600 mx-auto mb-3" />
                 <h3 className="text-xl font-bold text-gray-900">Job Seeker Premium</h3>
-                <div className="text-3xl font-bold text-blue-600 mt-2">$19<span className="text-lg text-gray-600">/month</span></div>
+                <div className="text-3xl font-bold text-blue-600 mt-2">₹1,577<span className="text-lg text-gray-600">/month</span></div>
               </div>
               
               <div className="space-y-3 mb-6">
@@ -264,7 +264,7 @@ const ProfilePage = () => {
               <div className="text-center mb-6">
                 <Building2 className="w-12 h-12 text-purple-600 mx-auto mb-3" />
                 <h3 className="text-xl font-bold text-gray-900">Employer Premium</h3>
-                <div className="text-3xl font-bold text-purple-600 mt-2">$99<span className="text-lg text-gray-600">/month</span></div>
+                <div className="text-3xl font-bold text-purple-600 mt-2">₹8,217<span className="text-lg text-gray-600">/month</span></div>
               </div>
               
               <div className="space-y-3 mb-6">

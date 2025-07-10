@@ -12,7 +12,7 @@ const PostJobPage = () => {
     salary: {
       min: '',
       max: '',
-      currency: 'USD'
+      currency: 'INR'
     },
     description: '',
     requirements: [''],
@@ -92,7 +92,7 @@ const PostJobPage = () => {
         <div className="text-right">
           <div className="text-2xl font-bold text-gray-900">
             {jobData.salary.min && jobData.salary.max 
-              ? `$${parseInt(jobData.salary.min).toLocaleString()} - $${parseInt(jobData.salary.max).toLocaleString()}`
+              ? `₹${parseInt(jobData.salary.min).toLocaleString()} - ₹${parseInt(jobData.salary.max).toLocaleString()}`
               : 'Salary Range'
             }
           </div>
@@ -317,13 +317,13 @@ const PostJobPage = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Minimum Salary</label>
                 <div className="relative">
-                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">₹</span>
                   <input
                     type="number"
                     value={jobData.salary.min}
                     onChange={(e) => handleInputChange('salary.min', e.target.value)}
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="80000"
+                    placeholder="6640000"
                   />
                 </div>
               </div>
@@ -331,13 +331,13 @@ const PostJobPage = () => {
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Maximum Salary</label>
                 <div className="relative">
-                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">₹</span>
                   <input
                     type="number"
                     value={jobData.salary.max}
                     onChange={(e) => handleInputChange('salary.max', e.target.value)}
                     className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="120000"
+                    placeholder="9960000"
                   />
                 </div>
               </div>
@@ -349,10 +349,10 @@ const PostJobPage = () => {
                   onChange={(e) => handleInputChange('salary.currency', e.target.value)}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 >
+                  <option value="INR">INR</option>
                   <option value="USD">USD</option>
                   <option value="EUR">EUR</option>
                   <option value="GBP">GBP</option>
-                  <option value="CAD">CAD</option>
                 </select>
               </div>
             </div>

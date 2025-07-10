@@ -13,7 +13,7 @@ const HomePage = () => {
       title: 'Senior Frontend Developer',
       company: 'TechCorp Solutions',
       location: 'San Francisco, CA',
-      salary: '$120k - $160k',
+      salary: '₹99L - ₹1.3Cr',
       type: 'Full-time',
       logo: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
       featured: true
@@ -23,7 +23,7 @@ const HomePage = () => {
       title: 'Product Manager',
       company: 'InnovateHub',
       location: 'New York, NY',
-      salary: '$100k - $140k',
+      salary: '₹83L - ₹1.16Cr',
       type: 'Full-time',
       logo: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop',
       urgent: true
@@ -33,7 +33,7 @@ const HomePage = () => {
       title: 'UX/UI Designer',
       company: 'DesignStudio Pro',
       location: 'Austin, TX',
-      salary: '$70k - $95k',
+      salary: '₹58L - ₹79L',
       type: 'Full-time',
       logo: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     }
@@ -51,7 +51,7 @@ const HomePage = () => {
     { label: 'Active Jobs', value: '2,847', icon: Briefcase, color: 'text-blue-600' },
     { label: 'Companies', value: '892', icon: Users, color: 'text-emerald-600' },
     { label: 'Success Rate', value: '94%', icon: Award, color: 'text-purple-600' },
-    { label: 'Avg Salary', value: '$95k', icon: TrendingUp, color: 'text-orange-600' }
+    { label: 'Avg Salary', value: '₹79L', icon: TrendingUp, color: 'text-orange-600' }
   ];
 
   return (

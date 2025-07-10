@@ -20,7 +20,7 @@ const SalaryGuidePage = () => {
       role: 'Software Engineer',
       location: 'San Francisco, CA',
       experience: 'Entry Level',
-      salary: { min: 95000, max: 130000, median: 112000 },
+      salary: { min: 7885000, max: 10790000, median: 9296000 },
       growth: 8.5,
       demand: 'High',
       skills: ['JavaScript', 'React', 'Node.js', 'Python']
@@ -29,7 +29,7 @@ const SalaryGuidePage = () => {
       role: 'Software Engineer',
       location: 'San Francisco, CA',
       experience: 'Mid Level',
-      salary: { min: 130000, max: 180000, median: 155000 },
+      salary: { min: 10790000, max: 14940000, median: 12865000 },
       growth: 12.3,
       demand: 'Very High',
       skills: ['JavaScript', 'React', 'Node.js', 'Python', 'System Design']
@@ -38,7 +38,7 @@ const SalaryGuidePage = () => {
       role: 'Software Engineer',
       location: 'San Francisco, CA',
       experience: 'Senior Level',
-      salary: { min: 180000, max: 250000, median: 215000 },
+      salary: { min: 14940000, max: 20750000, median: 17845000 },
       growth: 15.7,
       demand: 'Very High',
       skills: ['JavaScript', 'React', 'Node.js', 'Python', 'System Design', 'Leadership']
@@ -47,7 +47,7 @@ const SalaryGuidePage = () => {
       role: 'Product Manager',
       location: 'New York, NY',
       experience: 'Entry Level',
-      salary: { min: 85000, max: 115000, median: 100000 },
+      salary: { min: 7055000, max: 9545000, median: 8300000 },
       growth: 6.8,
       demand: 'High',
       skills: ['Product Strategy', 'Analytics', 'Agile', 'User Research']
@@ -56,7 +56,7 @@ const SalaryGuidePage = () => {
       role: 'Product Manager',
       location: 'New York, NY',
       experience: 'Mid Level',
-      salary: { min: 115000, max: 160000, median: 137000 },
+      salary: { min: 9545000, max: 13280000, median: 11371000 },
       growth: 10.2,
       demand: 'High',
       skills: ['Product Strategy', 'Analytics', 'Agile', 'User Research', 'Roadmapping']
@@ -65,7 +65,7 @@ const SalaryGuidePage = () => {
       role: 'Product Manager',
       location: 'New York, NY',
       experience: 'Senior Level',
-      salary: { min: 160000, max: 220000, median: 190000 },
+      salary: { min: 13280000, max: 18260000, median: 15770000 },
       growth: 13.5,
       demand: 'High',
       skills: ['Product Strategy', 'Analytics', 'Agile', 'User Research', 'Roadmapping', 'Team Leadership']
@@ -74,7 +74,7 @@ const SalaryGuidePage = () => {
       role: 'Data Scientist',
       location: 'Boston, MA',
       experience: 'Entry Level',
-      salary: { min: 75000, max: 105000, median: 90000 },
+      salary: { min: 6225000, max: 8715000, median: 7470000 },
       growth: 7.2,
       demand: 'High',
       skills: ['Python', 'R', 'SQL', 'Machine Learning', 'Statistics']
@@ -83,7 +83,7 @@ const SalaryGuidePage = () => {
       role: 'Data Scientist',
       location: 'Boston, MA',
       experience: 'Mid Level',
-      salary: { min: 105000, max: 145000, median: 125000 },
+      salary: { min: 8715000, max: 12035000, median: 10375000 },
       growth: 11.8,
       demand: 'Very High',
       skills: ['Python', 'R', 'SQL', 'Machine Learning', 'Statistics', 'Deep Learning']
@@ -92,7 +92,7 @@ const SalaryGuidePage = () => {
       role: 'UX Designer',
       location: 'Austin, TX',
       experience: 'Entry Level',
-      salary: { min: 55000, max: 75000, median: 65000 },
+      salary: { min: 4565000, max: 6225000, median: 5395000 },
       growth: 5.5,
       demand: 'Medium',
       skills: ['Figma', 'User Research', 'Prototyping', 'Design Systems']
@@ -101,7 +101,7 @@ const SalaryGuidePage = () => {
       role: 'UX Designer',
       location: 'Austin, TX',
       experience: 'Mid Level',
-      salary: { min: 75000, max: 105000, median: 90000 },
+      salary: { min: 6225000, max: 8715000, median: 7470000 },
       growth: 8.9,
       demand: 'High',
       skills: ['Figma', 'User Research', 'Prototyping', 'Design Systems', 'Interaction Design']
@@ -110,7 +110,7 @@ const SalaryGuidePage = () => {
       role: 'DevOps Engineer',
       location: 'Seattle, WA',
       experience: 'Mid Level',
-      salary: { min: 110000, max: 150000, median: 130000 },
+      salary: { min: 9130000, max: 12450000, median: 10790000 },
       growth: 14.2,
       demand: 'Very High',
       skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Infrastructure as Code']
@@ -119,7 +119,7 @@ const SalaryGuidePage = () => {
       role: 'DevOps Engineer',
       location: 'Seattle, WA',
       experience: 'Senior Level',
-      salary: { min: 150000, max: 200000, median: 175000 },
+      salary: { min: 12450000, max: 16600000, median: 14525000 },
       growth: 18.5,
       demand: 'Very High',
       skills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Infrastructure as Code', 'Security']
@@ -127,19 +127,19 @@ const SalaryGuidePage = () => {
   ];
 
   const topPayingRoles = [
-    { role: 'Staff Software Engineer', salary: 285000, growth: 22.1 },
-    { role: 'Principal Product Manager', salary: 265000, growth: 18.7 },
-    { role: 'Senior Data Scientist', salary: 195000, growth: 16.3 },
-    { role: 'Senior DevOps Engineer', salary: 175000, growth: 18.5 },
-    { role: 'Senior UX Designer', salary: 135000, growth: 12.4 }
+    { role: 'Staff Software Engineer', salary: 23655000, growth: 22.1 },
+    { role: 'Principal Product Manager', salary: 21995000, growth: 18.7 },
+    { role: 'Senior Data Scientist', salary: 16185000, growth: 16.3 },
+    { role: 'Senior DevOps Engineer', salary: 14525000, growth: 18.5 },
+    { role: 'Senior UX Designer', salary: 11205000, growth: 12.4 }
   ];
 
   const salaryTrends = [
-    { year: '2020', avgSalary: 95000 },
-    { year: '2021', avgSalary: 102000 },
-    { year: '2022', avgSalary: 115000 },
-    { year: '2023', avgSalary: 128000 },
-    { year: '2024', avgSalary: 142000 }
+    { year: '2020', avgSalary: 7885000 },
+    { year: '2021', avgSalary: 8466000 },
+    { year: '2022', avgSalary: 9545000 },
+    { year: '2023', avgSalary: 10624000 },
+    { year: '2024', avgSalary: 11786000 }
   ];
 
   const filteredSalaryData = salaryData.filter(item => {
@@ -152,8 +152,8 @@ const SalaryGuidePage = () => {
 
   const formatSalary = (amount) => {
     return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+      style: 'currency', 
+      currency: 'INR',
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -340,14 +340,14 @@ const SalaryGuidePage = () => {
                     
                     // Adjust based on experience
                     if (calculatorData.experience === 'Entry Level') {
-                      baseMin = 60000;
-                      baseMax = 90000;
+                      baseMin = 4980000;
+                      baseMax = 7470000;
                     } else if (calculatorData.experience === 'Mid Level') {
-                      baseMin = 80000;
-                      baseMax = 130000;
+                      baseMin = 6640000;
+                      baseMax = 10790000;
                     } else if (calculatorData.experience === 'Senior Level') {
-                      baseMin = 120000;
-                      baseMax = 200000;
+                      baseMin = 9960000;
+                      baseMax = 16600000;
                     }
                     
                     // Adjust based on location
@@ -475,8 +475,8 @@ const SalaryGuidePage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
-              <DollarSign className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <div className="text-2xl font-bold text-gray-900">$142k</div>
+              <span className="text-4xl text-blue-600 mx-auto mb-4 block">₹</span>
+              <div className="text-2xl font-bold text-gray-900">₹1.18Cr</div>
               <div className="text-sm text-gray-600">Average Tech Salary</div>
               <div className="text-xs text-emerald-600 mt-1">↑ 11% from last year</div>
             </div>

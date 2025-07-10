@@ -22,7 +22,7 @@ const JobDetailsPage = () => {
     title: 'Senior Frontend Developer',
     company: 'TechCorp Solutions',
     location: 'San Francisco, CA',
-    salary: '$120k - $160k',
+    salary: '₹99L - ₹1.3Cr',
     type: 'Full-time',
     experience: 'Senior',
     posted: '2 days ago',
@@ -78,7 +78,7 @@ This is an excellent opportunity to work with a talented team on challenging pro
       title: 'Frontend Developer',
       company: 'StartupXYZ',
       location: 'Remote',
-      salary: '$90k - $120k',
+      salary: '₹75L - ₹99L',
       logo: 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
     {
@@ -86,7 +86,7 @@ This is an excellent opportunity to work with a talented team on challenging pro
       title: 'React Developer',
       company: 'InnovateHub',
       location: 'New York, NY',
-      salary: '$100k - $140k',
+      salary: '₹83L - ₹1.16Cr',
       logo: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     },
     {
@@ -94,7 +94,7 @@ This is an excellent opportunity to work with a talented team on challenging pro
       title: 'Full Stack Developer',
       company: 'TechStart Inc',
       location: 'Austin, TX',
-      salary: '$85k - $115k',
+      salary: '₹71L - ₹95L',
       logo: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop'
     }
   ];
