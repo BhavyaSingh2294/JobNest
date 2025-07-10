@@ -15,6 +15,97 @@ const SalaryGuidePage = () => {
   });
   const [calculatorResult, setCalculatorResult] = useState(null);
 
+  // Dropdown options
+  const jobRoles = [
+    'Software Engineer',
+    'Product Manager', 
+    'Data Scientist',
+    'UX/UI Designer',
+    'DevOps Engineer',
+    'Marketing Manager',
+    'Sales Manager',
+    'Business Analyst',
+    'Project Manager',
+    'Full Stack Developer',
+    'Frontend Developer',
+    'Backend Developer',
+    'Mobile Developer',
+    'QA Engineer',
+    'Cybersecurity Analyst',
+    'Cloud Architect',
+    'Machine Learning Engineer',
+    'Digital Marketing Specialist',
+    'Content Writer',
+    'HR Manager'
+  ];
+
+  const locations = [
+    'Mumbai, Maharashtra',
+    'Bangalore, Karnataka', 
+    'Delhi, NCR',
+    'Hyderabad, Telangana',
+    'Chennai, Tamil Nadu',
+    'Pune, Maharashtra',
+    'Kolkata, West Bengal',
+    'Ahmedabad, Gujarat',
+    'Jaipur, Rajasthan',
+    'Surat, Gujarat',
+    'Lucknow, Uttar Pradesh',
+    'Kanpur, Uttar Pradesh',
+    'Nagpur, Maharashtra',
+    'Indore, Madhya Pradesh',
+    'Thane, Maharashtra',
+    'Bhopal, Madhya Pradesh',
+    'Visakhapatnam, Andhra Pradesh',
+    'Pimpri-Chinchwad, Maharashtra',
+    'Patna, Bihar',
+    'Vadodara, Gujarat',
+    'Ghaziabad, Uttar Pradesh',
+    'Ludhiana, Punjab',
+    'Agra, Uttar Pradesh',
+    'Nashik, Maharashtra',
+    'Faridabad, Haryana',
+    'Meerut, Uttar Pradesh',
+    'Rajkot, Gujarat',
+    'Kalyan-Dombivali, Maharashtra',
+    'Vasai-Virar, Maharashtra',
+    'Varanasi, Uttar Pradesh',
+    'Remote'
+  ];
+
+  const skillsOptions = [
+    'JavaScript, React, Node.js',
+    'Python, Django, Flask',
+    'Java, Spring Boot, Hibernate',
+    'C#, .NET, ASP.NET',
+    'PHP, Laravel, CodeIgniter',
+    'Ruby, Ruby on Rails',
+    'Go, Gin, Echo',
+    'Rust, Actix, Rocket',
+    'Swift, iOS Development',
+    'Kotlin, Android Development',
+    'Flutter, Dart',
+    'React Native',
+    'Angular, TypeScript',
+    'Vue.js, Nuxt.js',
+    'HTML, CSS, SASS',
+    'Bootstrap, Tailwind CSS',
+    'MySQL, PostgreSQL',
+    'MongoDB, NoSQL',
+    'Redis, Elasticsearch',
+    'AWS, Azure, GCP',
+    'Docker, Kubernetes',
+    'Jenkins, CI/CD',
+    'Git, GitHub, GitLab',
+    'Figma, Adobe XD',
+    'Photoshop, Illustrator',
+    'Machine Learning, TensorFlow',
+    'Data Analysis, Pandas',
+    'Power BI, Tableau',
+    'SEO, SEM, Google Analytics',
+    'Social Media Marketing'
+  ];
+
   const salaryData = [
     {
       role: 'Software Engineer',
@@ -259,14 +350,16 @@ const SalaryGuidePage = () => {
           <div className="p-6 space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Job Role *</label>
-              <input
-                type="text"
+              <select
                 value={calculatorData.role}
                 onChange={(e) => setCalculatorData({...calculatorData, role: e.target.value})}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="e.g. Software Engineer"
-                autoComplete="off"
-              />
+              >
+                <option value="">Select Job Role</option>
+                {jobRoles.map((role) => (
+                  <option key={role} value={role}>{role}</option>
+                ))}
+              </select>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -286,27 +379,31 @@ const SalaryGuidePage = () => {
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Location *</label>
-                <input
-                  type="text"
+                <select
                   value={calculatorData.location}
                   onChange={(e) => setCalculatorData({...calculatorData, location: e.target.value})}
                   className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="City, State"
-                  autoComplete="off"
-                />
+                >
+                  <option value="">Select Location</option>
+                  {locations.map((location) => (
+                    <option key={location} value={location}>{location}</option>
+                  ))}
+                </select>
               </div>
             </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Key Skills</label>
-              <input
-                type="text"
+              <select
                 value={calculatorData.skills}
                 onChange={(e) => setCalculatorData({...calculatorData, skills: e.target.value})}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="e.g. JavaScript, React, Node.js"
-                autoComplete="off"
-              />
+              >
+                <option value="">Select Key Skills</option>
+                {skillsOptions.map((skill) => (
+                  <option key={skill} value={skill}>{skill}</option>
+                ))}
+              </select>
             </div>
             
             <div>
