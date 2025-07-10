@@ -209,7 +209,7 @@ const CompaniesPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">892</div>
+              <div className="text-2xl font-bold text-blue-600">{companiesData.length}</div>
               <div className="text-sm text-gray-600">{companiesData.length} Companies</div>
             </div>
             <div className="text-center">
