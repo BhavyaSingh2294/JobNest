@@ -18,10 +18,6 @@ const Layout = ({ children }) => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [user, setUser] = useState(null);
   const location = useLocation();
-  const [paymentLoading, setPaymentLoading] = useState(false);
-
-  // Razorpay configuration
-  const RAZORPAY_KEY_ID = 'rzp_test_ach2SAXhkkc9oV';
 
   const unreadCount = notifications.filter(n => n.unread).length;
 
@@ -46,65 +42,17 @@ const Layout = ({ children }) => {
     setUserMenuOpen(false);
   };
 
-  const handleQuickUpgrade = async (planType, amount, planName) => {
+  const handleQuickUpgrade = (planType) => {
     if (!user) {
       setAuthModalOpen(true);
       return;
     }
     
-    setPaymentLoading(true);
-    
-    try {
-      const options = {
-        key: RAZORPAY_KEY_ID,
-        amount: amount * 100, // Razorpay expects amount in paise
-        currency: 'INR',
-        name: 'JobNest',
-        description: `${planName} Subscription`,
-        image: '/vite.svg',
-        handler: function (response) {
-          console.log('Payment successful:', response);
-          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-          
-          const updatedUser = { 
-            ...user, 
-            subscription: {
-              type: planType,
-              plan: planName,
-              paymentId: response.razorpay_payment_id,
-              startDate: new Date().toISOString(),
-              status: 'active'
-            }
-          };
-          setUser(updatedUser);
-          localStorage.setItem('user', JSON.stringify(updatedUser));
-        },
-        prefill: {
-          name: `${user.firstName} ${user.lastName}`,
-          email: user.email,
-          contact: user.phone || '9999999999'
-        },
-        theme: {
-          color: '#2563eb'
-        },
-        modal: {
-          ondismiss: function() {
-            setPaymentLoading(false);
-          }
-        }
-      };
-
-      const rzp = new window.Razorpay(options);
-      rzp.on('payment.failed', function (response) {
-        console.error('Payment failed:', response.error);
-        alert(`Payment failed: ${response.error.description}`);
-        setPaymentLoading(false);
-      });
-      rzp.open();
-    } catch (error) {
-      console.error('Payment error:', error);
-      alert('Payment failed. Please try again.');
-      setPaymentLoading(false);
+    // Open Razorpay.me links based on plan type
+    if (planType === 'jobseeker') {
+      window.open('https://razorpay.me/@bharatbhushannathsharma?amount=01vVMe2nRmlnNjFkqNNI6w%3D%3D', '_blank');
+    } else if (planType === 'employer') {
+      window.open('https://razorpay.me/@bharatbhushannathsharma?amount=YZdaFwx2QK8VytVM0yRD2w%3D%3D', '_blank');
     }
   };
 
@@ -196,18 +144,11 @@ const Layout = ({ children }) => {
               {user && !user.subscription?.status && (
                 <button
                   onClick={() => handleQuickUpgrade(
-                    user.userType === 'employer' ? 'employer' : 'jobseeker',
-                    user.userType === 'employer' ? 8217 : 1577,
-                    user.userType === 'employer' ? 'Employer Premium' : 'Job Seeker Premium'
+                    user.userType === 'employer' ? 'employer' : 'jobseeker'
                   )}
-                  disabled={paymentLoading}
-                  className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors disabled:opacity-50"
+                  className="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
                 >
-                  {paymentLoading ? (
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  ) : (
-                    <Crown className="w-4 h-4" />
-                  )}
+                  <Crown className="w-4 h-4" />
                   <span>Upgrade</span>
                 </button>
               )}

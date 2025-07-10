@@ -16,7 +16,6 @@ const ProfilePage = () => {
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [experiences, setExperiences] = useState([]);
   const [savedJobs, setSavedJobs] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   // Load data from localStorage on component mount
   useEffect(() => {
@@ -104,53 +103,14 @@ const ProfilePage = () => {
     setSavedJobs(savedJobs.filter(job => job.id !== jobId));
   };
 
-  const handlePayment = async (planType) => {
-    setIsLoading(true);
-    
-    const amount = planType === 'jobseeker' ? 157700 : 821700; // Amount in paise
-    const planName = planType === 'jobseeker' ? 'Job Seeker Premium' : 'Employer Premium';
-    
-    const options = {
-      key: 'rzp_test_ach2SAXhkkc9oV',
-      amount: amount,
-      currency: 'INR',
-      name: 'JobNest Premium',
-      description: `${planName} Subscription`,
-      image: '/logo.png',
-      handler: function (response) {
-        // Payment successful
-        setUser(prev => ({
-          ...prev,
-          subscription: {
-            type: planType,
-            plan: planName,
-            paymentId: response.razorpay_payment_id,
-            startDate: new Date().toISOString(),
-            status: 'active'
-          }
-        }));
-        
-        setShowUpgradeModal(false);
-        setIsLoading(false);
-        alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
-      },
-      prefill: {
-        name: user.name,
-        email: user.email,
-        contact: user.phone
-      },
-      theme: {
-        color: '#3B82F6'
-      },
-      modal: {
-        ondismiss: function() {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    const rzp = new window.Razorpay(options);
-    rzp.open();
+  const handlePayment = (planType) => {
+    // Open Razorpay.me links based on plan type
+    if (planType === 'jobseeker') {
+      window.open('https://razorpay.me/@bharatbhushannathsharma?amount=01vVMe2nRmlnNjFkqNNI6w%3D%3D', '_blank');
+    } else if (planType === 'employer') {
+      window.open('https://razorpay.me/@bharatbhushannathsharma?amount=YZdaFwx2QK8VytVM0yRD2w%3D%3D', '_blank');
+    }
+    setShowUpgradeModal(false);
   };
 
   return (
@@ -451,10 +411,9 @@ const ProfilePage = () => {
                   
                   <button
                     onClick={() => handlePayment('jobseeker')}
-                    disabled={isLoading}
-                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50"
+                    className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium"
                   >
-                    {isLoading ? 'Processing...' : 'Upgrade Now'}
+                    Upgrade Now
                   </button>
                 </div>
 
@@ -495,10 +454,9 @@ const ProfilePage = () => {
                   
                   <button
                     onClick={() => handlePayment('employer')}
-                    disabled={isLoading}
-                    className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium disabled:opacity-50"
+                    className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-medium"
                   >
-                    {isLoading ? 'Processing...' : 'Upgrade Now'}
+                    Upgrade Now
                   </button>
                 </div>
               </div>
