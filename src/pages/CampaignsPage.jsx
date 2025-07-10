@@ -186,13 +186,13 @@ const CampaignsPage = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Funding Goal *</label>
                   <div className="relative">
-                    <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                    <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg">₹</span>
                     <input
                       type="number"
                       value={campaignData.goalAmount}
                       onChange={(e) => setCampaignData({...campaignData, goalAmount: e.target.value})}
                       className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="25000"
+                      placeholder="2075000"
                     />
                   </div>
                 </div>
@@ -279,7 +279,7 @@ const CampaignsPage = () => {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Goal:</span>
-                      <span className="font-medium">${campaignData.goalAmount ? parseInt(campaignData.goalAmount).toLocaleString() : 'Not set'}</span>
+                      <span className="font-medium">₹{campaignData.goalAmount ? parseInt(campaignData.goalAmount).toLocaleString() : 'Not set'}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Deadline:</span>
@@ -394,13 +394,13 @@ const CampaignsPage = () => {
           <div className="grid grid-cols-3 gap-4 text-center mb-4">
             <div>
               <div className="text-lg font-bold text-gray-900">
-                ${campaign.raisedAmount.toLocaleString()}
+                ₹{Math.round(campaign.raisedAmount * 83).toLocaleString()}
               </div>
               <div className="text-xs text-gray-600">Raised</div>
             </div>
             <div>
               <div className="text-lg font-bold text-gray-900">
-                ${campaign.goalAmount.toLocaleString()}
+                ₹{Math.round(campaign.goalAmount * 83).toLocaleString()}
               </div>
               <div className="text-xs text-gray-600">Goal</div>
             </div>
@@ -463,7 +463,7 @@ const CampaignsPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">$2.4M</div>
+              <div className="text-2xl font-bold text-purple-600">₹19.9Cr</div>
               <div className="text-sm text-gray-600">Total Raised</div>
             </div>
             <div className="text-center">
