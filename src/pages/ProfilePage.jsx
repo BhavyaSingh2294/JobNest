@@ -19,6 +19,10 @@ const ProfilePage = () => {
     description: ''
   });
   const [savedJobs, setSavedJobs] = useState([]);
+  const [paymentLoading, setPaymentLoading] = useState(false);
+
+  // Razorpay configuration
+  const RAZORPAY_KEY_ID = 'rzp_test_ach2SAXhkkc9oV';
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -148,6 +152,72 @@ const ProfilePage = () => {
     localStorage.setItem('savedJobs', JSON.stringify(updatedSavedJobs));
   };
 
+  const handlePayment = async (planType, amount, planName) => {
+    setPaymentLoading(true);
+    
+    try {
+      const options = {
+        key: RAZORPAY_KEY_ID,
+        amount: amount * 100, // Razorpay expects amount in paise
+        currency: 'INR',
+        name: 'JobNest',
+        description: `${planName} Subscription`,
+        image: '/vite.svg', // Your logo
+        handler: function (response) {
+          // Payment successful
+          console.log('Payment successful:', response);
+          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+          
+          // Update user's subscription status
+          const updatedUser = { 
+            ...user, 
+            subscription: {
+              type: planType,
+              plan: planName,
+              paymentId: response.razorpay_payment_id,
+              startDate: new Date().toISOString(),
+              status: 'active'
+            }
+          };
+          setUser(updatedUser);
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+          setShowUpgradeModal(false);
+        },
+        prefill: {
+          name: `${user.firstName} ${user.lastName}`,
+          email: user.email,
+          contact: user.phone || '9999999999'
+        },
+        notes: {
+          address: user.location || 'India'
+        },
+        theme: {
+          color: '#2563eb'
+        },
+        modal: {
+          ondismiss: function() {
+            setPaymentLoading(false);
+            console.log('Payment modal closed');
+          }
+        }
+      };
+
+      const rzp = new window.Razorpay(options);
+      
+      rzp.on('payment.failed', function (response) {
+        console.error('Payment failed:', response.error);
+        alert(`Payment failed: ${response.error.description}`);
+        setPaymentLoading(false);
+      });
+      
+      rzp.open();
+    } catch (error) {
+      console.error('Payment initialization error:', error);
+      alert('Payment initialization failed. Please try again.');
+      setPaymentLoading(false);
+    }
+  };
+
   if (!user) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -254,8 +324,16 @@ const ProfilePage = () => {
                 </div>
               </div>
               
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors">
-                Upgrade Now
+              <button 
+                onClick={() => handlePayment('employer', 8217, 'Employer Premium')}
+                disabled={paymentLoading}
+                className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 text-white py-3 px-4 rounded-lg font-semibold transition-colors flex items-center justify-center"
+              >
+                {paymentLoading ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                ) : (
+                  'Upgrade Now'
+                )}
               </button>
             </div>
 
@@ -298,8 +376,29 @@ const ProfilePage = () => {
                 </div>
               </div>
               
-              <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-4 rounded-lg font-semibold transition-colors">
-                Upgrade Now
+              <button 
+                onClick={() => handlePayment('jobseeker', 1577, 'Job Seeker Premium')}
+              {user.subscription?.status === 'active' ? (
+                <div className="mb-4">
+                  <p className="text-blue-100 text-sm">
+                    <span className="capitalize">{user.subscription.plan}</span>
+                  </p>
+                  <div className="flex items-center space-x-2 mt-1">
+                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                    <span className="text-green-200 text-xs">Active Subscription</span>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-blue-100 mb-4 text-sm capitalize">
+                  {user.userType} Account (Free)
+                </p>
+              )}
+                {paymentLoading ? (
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                className="bg-white text-blue-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors"
+                disabled={user.subscription?.status === 'active'}
+                  'Upgrade Now'
+                {user.subscription?.status === 'active' ? 'Manage Subscription' : 'Upgrade Account'}
               </button>
             </div>
           </div>
